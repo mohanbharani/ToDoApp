@@ -1,0 +1,24 @@
+<div class="alert alert-success" role="alert" 
+    [ngStyle]="isTodoName?{'display': 'block'} : {'display': 'none'}" 
+    [ngClass]="{'success-todo-name': tempTodoName != ''}">
+    Added Todo Name in the List - {{tempTodoName}}
+</div>
+
+<div class="row">
+    <input type="text" name="todoName" [(ngModel)]="todoName" class="form-control" id="">
+    <br>
+    <button class="btn btn-primary form-control" (click)="getTodoList()" [disabled]="todoName === ''">Save Todo List</button>
+</div>
+<div class="col-offset" style=" border: dotted 1px greenyellow"></div>
+<div class="row" *ngIf="todoList?.length != 0; else elseBlock">
+    <div class="col-xs-12" 
+        *ngFor="let item of todoList; let i = index;"
+        
+        [ngClass]="{'randomRow': (i+1)%2 === 0 }">
+        <!-- [ngStyle]="{'backgroundColor': (i+1)%2 === 0 ? 'red' : 'yellow'}" -->
+        {{item}}
+    </div>
+</div>
+<div class="row">
+    <ng-template #elseBlock>No Todo List.</ng-template>
+</div>
